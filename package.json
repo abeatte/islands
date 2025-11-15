@@ -4,9 +4,9 @@
   "description": "This is the web browser version of the Islands Godot Game",
   "main": "index.js",
   "scripts": {
-    "start": "http-server ./public -p 3000",
+    "start": "http-server ./dist -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d dist"
+    "deploy": "touch dist/deploy.$(uuidgen) && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
