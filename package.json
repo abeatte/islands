@@ -1,0 +1,25 @@
+{
+  "name": "islands-game",
+  "version": "1.0.0",
+  "description": "This is the web browser version of the Islands Godot Game",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./public -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abeatte/islands_game.git"
+  },
+  "author": "abeatte@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abeatte/islands_game/issues"
+  },
+  "homepage": "https://github.com/abeatte/islands_game#readme",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "http-server": "^14.1.1"
+  }
+}
