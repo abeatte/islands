@@ -6,7 +6,8 @@
   "scripts": {
     "start": "http-server ./dist -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "touch dist/deploy.$(uuidgen) && gh-pages -d dist"
+    "deploy": "touch dist/deploy.$(uuidgen) && gh-pages -d dist",
+    "ci-deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
