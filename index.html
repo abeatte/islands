@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-<meta name="version" content="fee09fde-7422-4d3c-8183-3714768adb66">
+<meta name="version" content="d852829e-1098-49e6-9fe3-d824dd0795c6">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Islands Game</title>
@@ -152,7 +152,7 @@ function fetchData() {
       return response.text();
     })
     .then(data => {
-      if (data != metaVersion) {
+      if (data.trim() != metaVersion) {
   			showBanner();
   		}
     })
