@@ -5,6 +5,17 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Islands Game</title>
 		<style>
+#banner {
+	visibility: hidden;
+	position: absolute;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: mediumpurple;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
 html, body, #canvas {
 	margin: 0;
 	padding: 0;
@@ -95,6 +106,9 @@ body {
 
 	</head>
 	<body>
+		<div id="banner">
+			<h1>A new version of this site is available.</h1>
+		</div>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
 		</canvas>
@@ -111,6 +125,39 @@ body {
 
 		<script src="index.js"></script>
 		<script>
+function showBanner() {
+	const canvas = document.getElementById('canvas');
+	const banner = document.getElementById('banner');
+
+	canvas.style.top = "80px";
+	banner.style.visibility = "visible";
+}
+
+function fetchData() {
+  fetch('https://artbeatte.com/islands/version?cache-bust' + new Date().getTime())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(data => {
+		const currentVersion = localStorage.getItem('appVersion');
+  		if (data != currentVersion) {
+  		 	localStorage.setItem('appVersion', data);
+  			showBanner();
+  		}
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+// Call fetchData once on page load
+fetchData();
+
+// Set up the interval to call fetchData every 3 minutes (300,000 milliseconds)
+setInterval(fetchData, 3 * 60 * 1000); // 3 minutes
 const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":11619820,"index.wasm":1589584},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
