@@ -135,7 +135,7 @@ function showBanner() {
 	const canvas = document.getElementById('canvas');
 	const banner = document.getElementById('banner');
 
-	canvas.style.top = "80px";
+	canvas.style.top = "40px";
 	banner.style.visibility = "visible";
 }
 
@@ -149,7 +149,9 @@ function fetchData() {
     })
     .then(data => {
 		const currentVersion = localStorage.getItem('appVersion');
-  		if (data != currentVersion) {
+      if (currentVersion == null) {
+        localStorage.setItem('appVersion', data);
+      } else if (data != currentVersion) {
   		 	localStorage.setItem('appVersion', data);
   			showBanner();
   		}
