@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+<meta name="version" content="fee09fde-7422-4d3c-8183-3714768adb66">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Islands Game</title>
@@ -131,6 +132,9 @@ body {
 
 		<script src="index.js"></script>
 		<script>
+const metaVersion = document.querySelector("meta[name='version']").getAttribute("content");
+
+
 function showBanner() {
 	const canvas = document.getElementById('canvas');
 	const banner = document.getElementById('banner');
@@ -148,11 +152,7 @@ function fetchData() {
       return response.text();
     })
     .then(data => {
-		const currentVersion = localStorage.getItem('appVersion');
-      if (currentVersion == null) {
-        localStorage.setItem('appVersion', data);
-      } else if (data != currentVersion) {
-  		 	localStorage.setItem('appVersion', data);
+      if (data != metaVersion) {
   			showBanner();
   		}
     })
