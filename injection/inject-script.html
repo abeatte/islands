@@ -1,0 +1,34 @@
+const metaVersion = document.querySelector("meta[name='version']").getAttribute("content");
+
+
+function showBanner() {
+	const canvas = document.getElementById('canvas');
+	const banner = document.getElementById('banner');
+
+	canvas.style.top = "40px";
+	banner.style.visibility = "visible";
+}
+
+function fetchData() {
+  fetch('https://artbeatte.com/islands/version?cache-bust' + new Date().getTime())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(data => {
+      if (data.trim() != metaVersion) {
+  			showBanner();
+  		}
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+// Call fetchData once on page load
+fetchData();
+
+// Set up the interval to call fetchData every 3 minutes (300,000 milliseconds)
+setInterval(fetchData, 3 * 60 * 1000); // 3 minutes
